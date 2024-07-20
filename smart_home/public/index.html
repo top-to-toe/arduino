@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IoT Smart House</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+	<h2>&nbsp; &nbsp; IoT Smart Home</h2>
+
+	<table border="0"><!--display sensor value start-->
+		<tr align="center">
+			<td width="100"><p><b>Temperature :   </b></p></td>
+			<td width="25"><p id="temp"></p></td>
+			<td width="20"><p>℃</p></td>
+			<td width="25"><p>/</p></td>
+			<td width="80"><p><b>Humidity :      </b></p></td>
+			<td width="25"><p id="humi"></p></td>
+			<td width="20"><p>%</p></td>
+			<td width="25"><p>/</p></td>
+			<td width="100"><p><b>Air Condition : </b></p></td>
+			<td width="35"><p id="air"></p></td>
+			<td width="15"><p>&nbsp;</p></td>
+		</tr>
+	</table><!--display sensor value end-->
+	<!--p>&nbsp;</p-->
+
+			<table border="1">
+				<tr align="center">
+					<td width="160"><p><b>Control</b></p></td>
+					<td width="320" colspan="2"><p><b>Status</b></p></td>
+				</tr>
+				<tr align="center">
+					<td><p><a id="gasfan_On" href="/gasfan_on" target="iframe">Turn on gasFAN</a></p></td>
+					<td rowspan="2" width="230"><p id="gasfan_txt">Gasfan is turned off</p></td>
+					<td rowspan="2" width="90"><img src="./images/fan_off.gif" id="gasfan_img" width="70" align="middle"></td>
+				</tr>
+				<tr align="center">
+					<td><p><a id="gasfan_Off" href="/gasfan_off" target="iframe">Turn off gasFAN</a></p></td>
+				</tr>
+
+				<tr align="center">
+					<td><p><a id="light_On" href="/light_on" target="iframe">Turn on light</a></p></td>
+					<td rowspan="2" width="230"><p id="light_txt">light is turned off</p></td>
+					<td rowspan="2" width="90"><img src="./images/light_off.png" id="light_img" width="70" align="middle"></td>
+				</tr>
+				<tr align="center">
+					<td><p><a id="light_Off" href="/light_off" target="iframe">Turn off light</a></p></td>
+				</tr>
+
+				<tr align="center">
+					<td><p><a id="window_open" href="/window_open" target="iframe">Open Window</a></p></td>
+					<td rowspan="2"><p id="window_txt">Window is Closed</p></td>
+					<td rowspan="2"><img src="./images/window_close.png" id="window_img" width="80" align="middle"></td>
+				</tr>
+				<tr align="center">
+					<td><p><a id="window_close" href="/window_close" target="iframe">Close Window</a></p></td>
+				</tr>
+			</table>
+	<p>&nbsp;</p>	
+	
+	<table border="0"><!-- keypad start here -->
+	<tr height="75" align="center">
+		<td width="75">
+      <input type="button" style="width: 75px; height: 75px" value="1" onclick="btn1()"></input>
+    </td>
+		<td width="75">
+      <input type="button" style="width: 75px; height: 75px" value="2" onclick="btn2()"></input>
+    </td>
+		<td width="75">
+      <input type="button" style="width: 75px; height: 75px" value="3" onclick="btn3()"></input>
+    </td>
+	</tr>
+	<tr height="75"align="center">
+		<td>
+      <input type="button" style="width: 75px; height: 75px" value="4" onclick="btn4()">
+      </input>
+    </td>
+		<td>
+      <input type="button" style="width: 75px; height: 75px" value="5" onclick="btn5()">
+      </input>
+    </td>
+		<td>
+      <input type="button" style="width: 75px; height: 75px" value="6" onclick="btn6()">
+      </input>
+    </td>
+	</tr>
+	<tr height="75"align="center">
+		<td>
+      <input type="button" style="width: 75px; height: 75px" value="7" onclick="btn7()">
+      </input>
+    </td>
+		<td>
+      <input type="button" style="width: 75px; height: 75px" value="8" onclick="btn8()">
+      </input>
+    </td>
+		<td>
+      <input type="button" style="width: 75px; height: 75px" value="9" onclick="btn9()">
+      </input>
+    </td>
+	</tr>
+	<tr height="75"align="center">
+		<td>
+      <input type="button" style="width: 75px; height: 75px" value="*" onclick="open_door()">
+      </input>
+    </td>
+		<td>
+      <input type="button" style="width: 75px; height: 75px" value="0" onclick="btn0()">
+      </input>
+    </td>
+		<td>
+      <input type="button" style="width: 75px; height: 75px" value="#" onclick="reset()">
+      </input>
+    </td>
+	</tr>
+</table><!-- keypad end here -->
+	
+
+	<table><!-- hidden frame start here-->
+		<tr height="30">
+			<td> </br> &nbsp;</br> &nbsp;</td>
+			<td>
+				<iframe src="about:blank" width="300" height="30" scrolling="no" frameborder="0" border="0" bordercolor="white" marginwidth="0" marginheight="0" name="iframe"></iframe><p>
+			</td>
+		</tr>
+	</table><!-- hidden frame end here-->
+
+	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+	<!--<script src="javascripts/jquery-1.8.3.min.js"></script>-->
+	<script src="/socket.io/socket.io.js"></script>
+
+	<script>
+        $(document).ready(function () { //"$" -> jQuery 문법 시작
+			$('#gasfan_On').click(function () { //"#" -> id, "." -> class
+				$.ajax({
+					url: '/gasfan_on',
+					success: function (data) {
+						$('#gasfan_img').attr('src', './images/fan_on.gif');
+                        $('#gasfan_txt').text('Gasfan is turned on');
+					}
+				})
+			});
+
+
+			$('#gasfan_Off').click(function () { 
+				$.ajax({
+					url: '/gasfan_off',
+					success: function (data) {
+						$('#gasfan_img').attr('src', './images/fan_off.gif');
+                        $('#gasfan_txt').text('Gasfan is turned off');
+					}
+				})
+			});
+
+            $('#light_On').click(function () { //"#" -> id, "." -> class
+                $.ajax({
+                    url: '/light_on',
+                    success: function (data) {
+                        $('#light_img').attr('src', './images/light_on.png');
+                        $('#light_txt').text('light is turned on');
+                    }
+                })
+            });
+
+
+            $('#light_Off').click(function () {
+                $.ajax({
+                    url: '/light_off',
+                    success: function (data) {
+                        $('#light_img').attr('src', './images/light_off.png');
+                        $('#light_txt').text('light is turned off');
+                    }
+                })
+            });
+
+
+			$('#window_open').click(function () {
+				$.ajax({
+					url: '/window_open',
+					success: function (data) {
+						$('#window_img').attr('src', './images/window_open.png');
+                        $('#window_txt').text('Window is opened');
+					}
+				})
+			});
+
+            $('#window_close').click(function () {
+				$.ajax({
+                    url: '/window_close',
+					success: function (data) {
+                        $('#window_img').attr('src', './images/window_close.png');
+                        $('#window_txt').text('Window is closed');
+					}
+				})
+			});
+
+			$('#vent0').click(function () {
+				$.ajax({
+					url: '/vent_pos0',
+					success: function (data) {
+						$('#vent_img').attr('src', './images/vent_closed.png');
+						console.log(data);
+					}
+				})
+			});
+
+			$('#vent1').click(function () {
+				$.ajax({
+					url: '/vent_pos1',
+					success: function (data) {
+						$('#vent_img').attr('src', './images/vent_position1.png');
+						console.log(data);
+					}
+				})
+			});
+
+			$('#vent2').click(function () {
+				$.ajax({
+					url: '/vent_pos2',
+					success: function (data) {
+						$('#vent_img').attr('src', './images/vent_position2.png');
+						console.log(data);
+					}
+				})
+			});
+
+			$(function () {
+				var socket = io();
+
+				socket.on('temp', function (temperature) {
+					$('#temp').text(temperature);
+				});
+
+				socket.on('humi', function (humidity) {
+					$('#humi').text(humidity);
+				});
+
+				socket.on('mois', function (moisture) {
+					$('#mois').text(moisture);
+				});
+
+				socket.on('fan', function (fanState) {
+					$('#fan').text(fanState);
+				});
+
+				socket.on('valve', function (valveState) {
+					$('#valve').text(valveState);
+				});
+
+				socket.on('vent', function (ventState) {
+					$('#vent').text(ventState);
+				});
+			});
+		});
+		
+      function btn0(){
+		// alert("btn0");
+              iframe.location.href=("http://localhost:3000/btn0");
+      }
+      function btn1(){
+		// alert("btn1");
+		iframe.location.href=("http://localhost:3000/btn1");
+      }
+      function btn2(){
+		iframe.location.href=("http://localhost:3000/btn2");
+      }
+      function btn3(){
+		  iframe.location.href=("http://localhost:3000/btn3");
+			}
+      function btn4(){
+		  iframe.location.href=("http://localhost:3000/btn4");
+			}
+      function btn5(){
+		  iframe.location.href=("http://localhost:3000/btn5");
+			}
+      function btn6(){
+		  iframe.location.href=("http://localhost:3000/btn6");
+			}
+      function btn7(){
+              iframe.location.href=("http://localhost:3000/btn7");
+			}
+      function btn8(){
+              iframe.location.href=("http://localhost:3000/btn8");
+			}
+      function btn9(){
+		  iframe.location.href=("http://localhost:3000/btn9");
+			}
+      function open_door(){
+		  iframe.location.href=("http://localhost:3000/open_door");
+			}
+      function reset(){
+		  iframe.location.href=("http://localhost:3000/reset");
+      }
+
+
+	</script>
+</body>
+</html>

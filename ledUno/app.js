@@ -1,3 +1,0 @@
-
-
-speechSynthesis.write

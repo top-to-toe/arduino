@@ -44,7 +44,7 @@
 
 DHT dht(DHTPIN, typeDHT);               // DHT 객체를 생성, 핀 번호와 센서 타입 설정
 
-IPAddress server_addr(172, 30, 1, 34);  // MySQL 서버의 IP 주소
+IPAddress server_addr(172, 30, 1, 34);  // MySQL 서버의 IP 주소(현재 MySQL를 사용하는 컴퓨터의 IP 주소)
 char user[] = "user1";                  // MySQL 사용자 이름
 char password[] = "1234";               // MySQL 사용자 비밀번호
 

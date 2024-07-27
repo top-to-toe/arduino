@@ -39,12 +39,12 @@
 #include <MySQL_Cursor.h>               // MySQL 쿼리를 실행하기 위한 커서 객체 라이브러리
 #include "DHT.h"                        // DHT 센서 라이브러리
 
-#define DHTPIN 5                        // DHT 센서가 연결된 핀 번호 (GPIO5)
+#define DHTPIN 5                        // DHT 센서가 연결된 핀 번호 (GPIO5) - 실습 당시 DHT 센서의 out핀이 ESP8266의 D1(GPIO5)에 연결
 #define typeDHT DHT11                   // 사용하는 DHT 센서의 종류 (DHT11)
 
 DHT dht(DHTPIN, typeDHT);               // DHT 객체를 생성, 핀 번호와 센서 타입 설정
 
-IPAddress server_addr(172, 30, 1, 34);  // MySQL 서버의 IP 주소(현재 MySQL를 사용하는 컴퓨터의 IP 주소)
+IPAddress server_addr(172, 30, 1, 34);  // MySQL 서버의 IP 주소 (현재 MySQL를 사용하는 컴퓨터의 IP 주소)
 char user[] = "user1";                  // MySQL 사용자 이름
 char password[] = "1234";               // MySQL 사용자 비밀번호
 
@@ -53,7 +53,7 @@ char INSERT_SQL[] = "INSERT INTO dht11.dev01(Temperature, Humidity) VALUES (%d, 
 char query[128];                        // 쿼리 문자열을 저장할 배열
 
 // WiFi 네트워크 정보
-char ssid[] = "KT_GiGA_2G_43E1";        // 연결할 WiFi 네트워크의 SSID
+char ssid[] = "KT_GiGA_2G_43E1";        // 연결할 WiFi 네트워크의 SSID (ESP8266 보드가 2.4Hz의 2G 신호만 수신 가능하므로 연결 네트워크 SSID 확인 유의)
 char pass[] = "6gb28gd078";             // WiFi 네트워크의 비밀번호
 
 WiFiClient client;                      // WiFi 클라이언트 객체 생성

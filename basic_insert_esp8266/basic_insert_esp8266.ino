@@ -107,3 +107,37 @@ void loop()
 
   delay(5000);                // 5초 대기
 }
+
+/* ESP8266 Board 컴파일 유의 사항 */
+// 반드시 코드 완성 후 초기 Complie 진행 전에 flash + rst 버튼을 눌러 보드를 reset 시킨 후, 컴파일 진행해야 한다!
+
+/* ESP8266 board 아두이노 기본 IDE에 포함 */
+// https://blog.naver.com/elepartsblog/221453102971 (참고 사이트) - 그대로 따라서 진행
+
+/* arduino IDE내 mysql 라이브러리 추가 */
+// ...(앞과정 생략) 라이브러리 포함하기(보드 매니저) - mysql 검색 - mysql connector arduino 설치
+
+/* mySQL 설치 */
+// https://giveme-happyending.tistory.com/203 (참고사이트)
+// 설치 과정 중 Type and Networking에서 Show Advanced and Logging Options 옵션 체크
+// 쿼리문 참고문서 - (mysql 검색) https://www.dropbox.com/scl/fo/sh05nl33unxil1bodb1mc/AOMZDn2N_zHswG1tfY_Fw6s/reference?dl=0&preview=_refs4RPi.txt&rlkey=hxq3t8pivi9w75o1j59d4atfc&subfolder_nav_tracking=1
+// [설치 완료 후 MySQL 터미널 or MySQL Workbench 실행]
+
+/*
+  // <'basic_insert_esp8266.ino' 실행 전 쿼리 입력>
+  // SHOW databases;                                    # 기존 데이터 베이스 확인
+  // create user 'user1'@'%' identified by '1234';      # 사용자 생성
+  // GRANT ALL ON *.* TO 'user1'@'%';                   # 사용자(user1) 권한 부여
+  // create database dht11;                             # dht11 데이터 베이스 생성
+  // use dht11;                                         # dht11 사용
+  // SHOW tables;
+  // create table dev01(id int not null auto_increment primary key,Temperature varchar(10) not null,Humidity varchar(10) not null,time timestamp default CURRENT_TIMESTAMP);
+
+  // select * from dev01;     # 코드 실행 후 데이터 삽입 내용 확인 쿼리
+
+      *** 주의사항 ***
+      c:\Users\{사용자}\Documents\Arduino\libraries\MySQL_Connector_Arduino\src\MySQL_Encrypt_Sha1.cpp 파일 내용 중 특정 코드 추가 및 수정
+      - size_t Encrypt_SHA1::write(uint8_t data) 함수와 size_t Encrypt_SHA1::write(uint8_t* data, int length) 함수가 반환 타입에 대한 return이 정의 되어있지않으므로 함수 정의 마지막 줄에 return 1; 코드 삽입 또는 반환 타입 void로 변경해서 저장할 것.
+*/
+
+// WiFi 연결 참고 예제 - https://www.dropbox.com/scl/fo/ww536ynjiahb2c08vjc5d/AML19pvCRTZ8NNxcGMc4RM8/___2024KU_IOT/ino/WiFiWebServer?dl=0&rlkey=cx1c7uz1psesfw2nqrtjttvy4&subfolder_nav_tracking=1

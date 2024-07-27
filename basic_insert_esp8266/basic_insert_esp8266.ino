@@ -39,7 +39,7 @@
 #include <MySQL_Cursor.h>               // MySQL 쿼리를 실행하기 위한 커서 객체 라이브러리
 #include "DHT.h"                        // DHT 센서 라이브러리
 
-#define DHTPIN 5                        // DHT 센서가 연결된 핀 번호 (GPIO5) - 실습 당시 DHT 센서의 out핀이 ESP8266의 D1(GPIO5)에 연결
+#define DHTPIN 5                        // DHT 센서가 연결된 핀 번호 (GPIO5) - 실습 당시 DHT 센서의 out핀이 ESP8266의 D1(GPIO5)에 연결, -는 접지(GND)에 연결하고 +는 3V3에 연결.
 #define typeDHT DHT11                   // 사용하는 DHT 센서의 종류 (DHT11)
 
 DHT dht(DHTPIN, typeDHT);               // DHT 객체를 생성, 핀 번호와 센서 타입 설정

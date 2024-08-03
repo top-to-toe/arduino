@@ -90,7 +90,7 @@ app.get('/edit/:id',function(req,res)
 	});
 });
 
-// http://localhost:8000/delete/3 
+// http://localhost:8000/delete/3  ------ delete.html
 app.get('/delete/:id',function(req,res)
 {
 	mySqlClient.query('delete from dev01 where id = ?',

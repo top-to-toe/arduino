@@ -2,143 +2,147 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>List Page</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<style>
-		body {
-			background-color: #000;
-			color: #fff;
-		}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
 
-		.table {
-			color: #fff;
-		}
+        .table {
+            color: #fff;
+        }
 
-		.btn-custom {
-			background-color: #333;
-			color: #fff;
-		}
+        .btn-custom {
+            background-color: #333;
+            color: #fff;
+        }
 
-		.btn-custom:hover {
-			background-color: #555;
-			color: #fff;
-		}
-	</style>
+            .btn-custom:hover {
+                background-color: #555;
+                color: #fff;
+            }
+    </style>
 </head>
 
 <body>
-	<div class="container">
-		<h2 class="mt-4">List Page</h2>
-		<!-- 버튼을 클릭하여 데이터 추가 모달을 열 수 있음 -->
-		<button type="button" class="btn btn-custom mb-3" data-toggle="modal" data-target="#insertModal">Add
-			Data</button>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Actions</th>
-					<th>ID</th>
-					<th>Temperature</th>
-					<th>Humidity</th>
-					<th>Time</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- dht 배열의 각 항목을 테이블 행으로 출력 -->
-				<% dht.forEach(function(item, index){ %>
-					<tr>
-						<td>
-							<!-- 데이터 삭제 및 수정 버튼 -->
-							<a href='/delete/<%= item.id %>' class="btn btn-custom btn-sm">Delete</a>
-							<button type="button" class="btn btn-custom btn-sm" data-toggle="modal"
-								data-target="#editModal" data-id="<%= item.id %>">Edit</button>
-						</td>
-						<td>
-							<%= item.id %>
-						</td>
-						<td>
-							<%= item.Temperature %>
-						</td>
-						<td>
-							<%= item.Humidity %>
-						</td>
-						<td>
-							<%= item.time %>
-						</td>
-					</tr>
-					<% }); %>
-			</tbody>
-		</table>
-	</div>
+    <div class="container">
+        <h2 class="mt-4">List Page</h2>
+        <!-- 버튼을 클릭하여 데이터 추가 모달을 열 수 있음 -->
+        <button type="button" class="btn btn-custom mb-3" data-toggle="modal" data-target="#insertModal">
+            Add
+            Data
+        </button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th>ID</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- dht 배열의 각 항목을 테이블 행으로 출력 -->
+                <% dht.forEach(function(item, index){ %>
+                <tr>
+                    <td>
+                        <!-- 데이터 삭제 및 수정 버튼 -->
+                        <a href='/delete/<%= item.id %>' class="btn btn-custom btn-sm">Delete</a>
+                        <button type="button" class="btn btn-custom btn-sm" data-toggle="modal"
+                                data-target="#editModal" data-id="<%= item.id %>">
+                            Edit
+                        </button>
+                    </td>
+                    <td>
+                        <%= item.id %>
+                    </td>
+                    <td>
+                        <%= item.Temperature %>
+                    </td>
+                    <td>
+                        <%= item.Humidity %>
+                    </td>
+                    <td>
+                        <%= item.time %>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
 
-	<!-- 데이터 추가를 위한 모달 -->
-	<div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="insertModalLabel">Add Data</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form id="insertForm" method="post">
-						<div class="form-group">
-							<label for="temperature">Temperature</label>
-							<input type="text" class="form-control" id="insertTemperature" name="Temperature"
-								placeholder="Enter temperature">
-						</div>
-						<div class="form-group">
-							<label for="humidity">Humidity</label>
-							<input type="text" class="form-control" id="insertHumidity" name="Humidity"
-								placeholder="Enter humidity">
-						</div>
-						<button type="submit" class="btn btn-custom">Add</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+    <!-- 데이터 추가를 위한 모달 -->
+    <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="insertModalLabel">Add Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="insertForm" method="post">
+                        <div class="form-group">
+                            <label for="temperature">Temperature</label>
+                            <input type="text" class="form-control" id="insertTemperature" name="Temperature"
+                                   placeholder="Enter temperature">
+                        </div>
+                        <div class="form-group">
+                            <label for="humidity">Humidity</label>
+                            <input type="text" class="form-control" id="insertHumidity" name="Humidity"
+                                   placeholder="Enter humidity">
+                        </div>
+                        <button type="submit" class="btn btn-custom">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<!-- 데이터 수정을 위한 모달 -->
-	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="editModalLabel">Edit Data</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form id="editForm" method="post">
-						<div class="form-group">
-							<label for="editId">ID</label>
-							<input type="text" class="form-control" id="editId" name="id" disabled>
-						</div>
-						<div class="form-group">
-							<label for="editTemperature">Temperature</label>
-							<input type="text" class="form-control" id="editTemperature" name="Temperature">
-						</div>
-						<div class="form-group">
-							<label for="editHumidity">Humidity</label>
-							<input type="text" class="form-control" id="editHumidity" name="Humidity">
-						</div>
-						<button type="submit" class="btn btn-custom">Update</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+    <!-- 데이터 수정을 위한 모달 -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" method="post">
+                        <div class="form-group">
+                            <label for="editId">ID</label>
+                            <input type="text" class="form-control" id="editId" name="id" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="editTemperature">Temperature</label>
+                            <input type="text" class="form-control" id="editTemperature" name="Temperature">
+                        </div>
+                        <div class="form-group">
+                            <label for="editHumidity">Humidity</label>
+                            <input type="text" class="form-control" id="editHumidity" name="Humidity">
+                        </div>
+                        <button type="submit" class="btn btn-custom">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<!-- JavaScript 의존성 -->
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script>
+    <!-- JavaScript 의존성 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
 		// 새 데이터 추가 폼 제출 처리
 		$('#insertForm').submit(function (event) {
 			event.preventDefault(); // 기본 폼 제출 방지
@@ -193,7 +197,7 @@
 				console.error('Update failed:', textStatus, errorThrown); // 실패 시 오류 로그
 			});
 		});
-	</script>
+    </script>
 </body>
 
 </html>

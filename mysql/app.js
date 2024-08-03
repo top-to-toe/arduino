@@ -115,7 +115,7 @@ app.post( '/insert', function(req, res)
 {
 	var body = req.body;
 	
-	mySqlClient.query( 'insert into dev01(Temperature, Humidity) values(?,?,?)',
+	mySqlClient.query( 'insert into dev01(Temperature, Humidity) values(?,?)',
 	[body.Temperature, body.Humidity],function(error,result)
 	{
 		if(error)

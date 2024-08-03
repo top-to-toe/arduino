@@ -1,28 +1,45 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-<head></head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert Data</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: #000;
+			color: #fff;
+		}
+
+		.btn-custom {
+			background-color: #333;
+			color: #fff;
+		}
+
+		.btn-custom:hover {
+			background-color: #555;
+			color: #fff;
+		}
+	</style>
+</head>
 
 <body>
-	<form method='post'>
-		<fieldset>
-			<legend>INSERT DATA</legend>
-			<table>
-				<tr>
-					<td>
-						<lable>Temp</lable>
-					</td>
-					<td><input type="text" name="Temperature" value="" disable /></td>
-				</tr>
-				<tr>
-					<td>
-						<lable>Humi</lable>
-					</td>
-					<td><input type="text" name="Humidity" value="" disable /></td>
-				</tr>
-			</table>
-			<input type="submit" value="Insert" />
-		</fieldset>
-	</form>
+	<div class="container">
+		<h2 class="mt-4">Insert Data</h2>
+		<form method="post">
+			<div class="form-group">
+				<label for="temperature">Temperature</label>
+				<input type="text" class="form-control" id="temperature" name="Temperature"
+					placeholder="Enter temperature">
+			</div>
+			<div class="form-group">
+				<label for="humidity">Humidity</label>
+				<input type="text" class="form-control" id="humidity" name="Humidity" placeholder="Enter humidity">
+			</div>
+			<button type="submit" class="btn btn-custom">Insert</button>
+		</form>
+	</div>
 </body>
 
 </html>

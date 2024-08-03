@@ -1,34 +1,49 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-<head></head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Edit Data</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: #000;
+			color: #fff;
+		}
+
+		.btn-custom {
+			background-color: #333;
+			color: #fff;
+		}
+
+		.btn-custom:hover {
+			background-color: #555;
+			color: #fff;
+		}
+	</style>
+</head>
 
 <body>
-	<form method='post'>
-		<fieldset>
-			<legend>EDIT DATA</legend>
-			<table>
-				<tr>
-					<td>
-						<lable>id</lable>
-					</td>
-					<td><input type="text" name="id" value="<%=dev01.id %>" disable /></td>
-				</tr>
-				<tr>
-					<td>
-						<lable>Temp</lable>
-					</td>
-					<td><input type="text" name="Temperature" value="<%=dev01.Temperature %>" disable /></td>
-				</tr>
-				<tr>
-					<td>
-						<lable>Humi</lable>
-					</td>
-					<td><input type="text" name="Humidity" value="<%=dev01.Humidity %>" disable /></td>
-				</tr>
-			</table>
-			<input type="submit" value="Update" />
-		</fieldset>
-	</form>
+	<div class="container">
+		<h2 class="mt-4">Edit Data</h2>
+		<form method="post">
+			<div class="form-group">
+				<label for="id">ID</label>
+				<input type="text" class="form-control" id="id" name="id" value="<%= dev01.id %>" disabled>
+			</div>
+			<div class="form-group">
+				<label for="temperature">Temperature</label>
+				<input type="text" class="form-control" id="temperature" name="Temperature"
+					value="<%= dev01.Temperature %>">
+			</div>
+			<div class="form-group">
+				<label for="humidity">Humidity</label>
+				<input type="text" class="form-control" id="humidity" name="Humidity" value="<%= dev01.Humidity %>">
+			</div>
+			<button type="submit" class="btn btn-custom">Update</button>
+		</form>
+	</div>
 </body>
 
 </html>

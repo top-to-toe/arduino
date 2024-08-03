@@ -47,7 +47,7 @@ app.get('/',function(req,res)
 				}
 				else
 				{
-					res.send(ejs.render(data,{ prodList:results }));
+					res.send(ejs.render(data,{ dht:results }));
 				}
 			});
 		}
